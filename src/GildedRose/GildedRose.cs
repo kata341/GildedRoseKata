@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
     public class GildedRose
     {
+        private const int QualityUpperLimit = 50;
+
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -14,6 +17,13 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
+
+                if (Items[i].Name == "Aged Brie")
+                {
+                    UpdateAgedBrie(Items[i]);
+                    continue;
+                }
+
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -84,6 +94,20 @@ namespace GildedRoseKata
                     }
                 }
             }
+        }
+
+        private void UpdateAgedBrie(Item item)
+        {
+            item.SellIn -= 1;
+
+            var qualityChange = item.SellIn < 0 ? 2 : 1;
+            item.Quality += qualityChange;
+
+            if (item.Quality > QualityUpperLimit) item.Quality = QualityUpperLimit;
+        }
+
+            item.SellIn -= 1;
+
         }
     }
 }

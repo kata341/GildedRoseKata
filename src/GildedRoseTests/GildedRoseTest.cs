@@ -42,15 +42,25 @@ namespace GildedRoseTests
             Assert.Equal(50, items[0].Quality);
         }
 
-        [Fact]
-        public void AgedBrieIncreasesInQuality()
+        [Theory]
+        [InlineData(2, 5, 6)] // Quality increases by 1 when SellIn > 0
+        [InlineData(1, 5, 6)]
+        [InlineData(0, 5, 7)] // Quality increases by 1 when SellIn <= 0
+        [InlineData(-1, 5, 7)]
+        [InlineData(-2, 5, 7)]
+        public void AgedBrieIncreasesInQuality(int initialSellIn, int initialQuality, int expectedQuality)
         {
-            var initialQuality = 1;
-            var items = new List<Item> { new Item { Name = "Aged Brie", Quality = initialQuality } };
+            var items = new List<Item> {
+                new Item {
+                    Name = "Aged Brie",
+                    Quality = initialQuality,
+                    SellIn = initialSellIn
+                }
+            };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
-            Assert.True(items[0].Quality > initialQuality);
+            Assert.Equal(expectedQuality, items[0].Quality);
         }
 
         [Fact]
