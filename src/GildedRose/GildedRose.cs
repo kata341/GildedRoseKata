@@ -37,6 +37,12 @@ namespace GildedRoseKata
                     continue;
                 }
 
+                if (Items[i].Name == "Conjured Mana Cake")
+                {
+                    new Conjured(Items[i]).Update();
+                    continue;
+                }
+
                 new StockItem(Items[i]).Update();
             }
         }
