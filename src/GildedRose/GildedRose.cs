@@ -24,6 +24,12 @@ namespace GildedRoseKata
                     continue;
                 }
 
+                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    UpdateBackstagePass(Items[i]);
+                    continue;
+                }
+
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -106,8 +112,19 @@ namespace GildedRoseKata
             if (item.Quality > QualityUpperLimit) item.Quality = QualityUpperLimit;
         }
 
+        private void UpdateBackstagePass(Item item)
+        {
             item.SellIn -= 1;
 
+            var qualityChange = 1;
+            if (item.SellIn < 10) qualityChange = 2;
+            if (item.SellIn < 5) qualityChange = 3;
+            item.Quality += qualityChange;
+
+            if (item.SellIn < 0) item.Quality = 0;
+
+            if (item.Quality > QualityUpperLimit) item.Quality = QualityUpperLimit;
         }
+
     }
 }
