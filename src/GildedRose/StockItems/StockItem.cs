@@ -3,6 +3,7 @@
 public class StockItem
 {
     private const int QualityLowerLimit = 0;
+    private const int QualityUpperLimit = 50;
 
     public Item Item { get; }
 
@@ -11,7 +12,7 @@ public class StockItem
         Item = item;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         Item.SellIn -= 1;
 
@@ -21,8 +22,9 @@ public class StockItem
         EnforceQualityLimits();
     }
 
-    private void EnforceQualityLimits()
+    protected void EnforceQualityLimits()
     {
         if (Item.Quality < QualityLowerLimit) Item.Quality = QualityLowerLimit;
+        if (Item.Quality > QualityUpperLimit) Item.Quality = QualityUpperLimit;
     }
 }

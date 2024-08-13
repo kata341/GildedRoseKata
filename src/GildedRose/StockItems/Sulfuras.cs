@@ -1,17 +1,12 @@
 ﻿namespace GildedRoseKata.StockItems;
 
-public class Sulfuras
+public class Sulfuras : StockItem
 {
-    private const int QualityLowerLimit = 0;
-
-    public Item Item { get; }
-
-    public Sulfuras(Item item)
+    public Sulfuras(Item item) : base(item)
     {
-        Item = item;
     }
 
-    public void Update()
+    public override void Update()
     {
     }
 }

@@ -1,17 +1,12 @@
 ﻿namespace GildedRoseKata.StockItems
 {
-    public class AgedBrie
+    public class AgedBrie : StockItem
     {
-        private const int QualityUpperLimit = 50;
-
-        public Item Item { get; }
-
-        public AgedBrie(Item item)
+        public AgedBrie(Item item) : base(item)
         {
-            Item = item;
         }
 
-        public void Update()
+        public override void Update()
         {
             Item.SellIn -= 1;
 
@@ -19,11 +14,6 @@
             Item.Quality += qualityChange;
 
             EnforceQualityLimits();
-        }
-
-        private void EnforceQualityLimits()
-        {
-            if (Item.Quality > QualityUpperLimit) Item.Quality = QualityUpperLimit;
         }
     }
 }

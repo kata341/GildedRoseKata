@@ -1,17 +1,12 @@
 ﻿namespace GildedRoseKata.StockItems
 {
-    public class BackstagePass
+    public class BackstagePass : StockItem
     {
-        private const int QualityUpperLimit = 50;
-
-        public Item Item { get; }
-
-        public BackstagePass(Item item)
+        public BackstagePass(Item item) : base(item)
         {
-            Item = item;
         }
 
-        public void Update()
+        public override void Update()
         {
             Item.SellIn -= 1;
 
@@ -23,11 +18,6 @@
             if (Item.SellIn < 0) Item.Quality = 0;
 
             EnforceQualityLimits();
-        }
-
-        private void EnforceQualityLimits()
-        {
-            if (Item.Quality > QualityUpperLimit) Item.Quality = QualityUpperLimit;
         }
     }
 }
