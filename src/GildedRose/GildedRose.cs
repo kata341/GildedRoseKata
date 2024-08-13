@@ -27,7 +27,7 @@ namespace GildedRoseKata
 
                 if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    UpdateBackstagePass(Items[i]);
+                    new BackstagePass(Items[i]).Update();
                     continue;
                 }
 
