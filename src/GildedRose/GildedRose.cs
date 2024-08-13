@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GildedRoseKata.StockItems;
 using System.Collections.Generic;
 
 namespace GildedRoseKata
@@ -37,18 +37,8 @@ namespace GildedRoseKata
                     continue;
                 }
 
-                UpdateItem(Items[i]);
+                new StockItem(Items[i]).Update();
             }
-        }
-
-        private void UpdateItem(Item item)
-        {
-            item.SellIn -= 1;
-
-            var qualityChange = item.SellIn < 0 ? -2 : -1;
-            item.Quality += qualityChange;
-
-            if (item.Quality < QualityLowerLimit) item.Quality = QualityLowerLimit;
         }
 
         private void UpdateAgedBrie(Item item)
