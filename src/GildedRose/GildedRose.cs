@@ -30,6 +30,12 @@ namespace GildedRoseKata
                     continue;
                 }
 
+                if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
+                {
+                    UpdateSulfuras(Items[i]);
+                    continue;
+                }
+
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -126,5 +132,8 @@ namespace GildedRoseKata
             if (item.Quality > QualityUpperLimit) item.Quality = QualityUpperLimit;
         }
 
+        private void UpdateSulfuras(Item item)
+        {
+        }
     }
 }
