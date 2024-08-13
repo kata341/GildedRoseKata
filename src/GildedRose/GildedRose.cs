@@ -21,7 +21,7 @@ namespace GildedRoseKata
 
                 if (Items[i].Name == "Aged Brie")
                 {
-                    UpdateAgedBrie(Items[i]);
+                    new AgedBrie(Items[i]).Update();
                     continue;
                 }
 
@@ -39,16 +39,6 @@ namespace GildedRoseKata
 
                 new StockItem(Items[i]).Update();
             }
-        }
-
-        private void UpdateAgedBrie(Item item)
-        {
-            item.SellIn -= 1;
-
-            var qualityChange = item.SellIn < 0 ? 2 : 1;
-            item.Quality += qualityChange;
-
-            if (item.Quality > QualityUpperLimit) item.Quality = QualityUpperLimit;
         }
 
         private void UpdateBackstagePass(Item item)
