@@ -33,7 +33,7 @@ namespace GildedRoseKata
 
                 if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
                 {
-                    UpdateSulfuras(Items[i]);
+                    new Sulfuras(Items[i]).Update();
                     continue;
                 }
 
